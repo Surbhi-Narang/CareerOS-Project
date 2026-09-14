@@ -1,0 +1,71 @@
+/* 
+  CareerOS — Single Source of Truth CSS Variables 
+  All colors, fonts, line-heights, and spacing scale definitions.
+*/
+
+:root {
+  /* Colors - Modern Electric Indigo & Slate Palette */
+  --color-primary: #4F46E5;         /* Vibrant Electric Indigo */
+  --color-primary-hover: #4338CA;   /* Deep Indigo for hover */
+  --color-primary-light: #EEF2FF;   /* Soft Indigo background tint */
+  --color-accent: #8B5CF6;          /* Vibrant Violet/Purple Accent */
+  --color-accent-light: #F5F3FF;    /* Light Violet tint */
+  --color-accent-gold: #F59E0B;     /* Vibrant Warm Amber Gold */
+  
+  --color-bg: #F8FAFC;              /* Clean Slate 50 page background */
+  --color-bg-alt: #F1F5F9;          /* Slate 100 section background */
+  --color-surface: #FFFFFF;         /* Crisp White Card Surface */
+  --color-border: #E2E8F0;          /* Modern Slate 200 Border */
+  --color-border-hover: #CBD5E1;    /* Slate 300 Border on hover */
+  
+  --color-text-primary: #0F172A;    /* Slate 900 primary heading text */
+  --color-text-muted: #475569;      /* Slate 600 readable body text */
+  
+  --color-success: #10B981;         /* Vibrant Emerald 500 */
+  --color-success-bg: #ECFDF5;     /* Emerald tint */
+  --color-error: #EF4444;           /* Rose 500 red */
+  --color-error-bg: #FEF2F2;       /* Rose tint */
+  --color-warning: #F59E0B;         /* Amber 500 */
+
+  /* Typography */
+  --font-brand: 'Outfit', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  
+  --font-size-h1: 2.5rem;      /* 40px */
+  --font-size-h2: 2rem;        /* 32px */
+  --font-size-h3: 1.5rem;      /* 24px */
+  --font-size-body: 1rem;      /* 16px */
+  --font-size-small: 0.875rem; /* 14px */
+  --font-size-xs: 0.75rem;     /* 12px */
+
+  --line-height-heading: 1.2;
+  --line-height-body: 1.55;
+
+  /* 8px Spacing Scale */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;     /* Default rounded-md */
+  --radius-lg: 16px;     /* Polished rounded cards */
+  --radius-full: 9999px; /* Pill radius */
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 30px -10px rgba(79, 70, 229, 0.15);
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+}
