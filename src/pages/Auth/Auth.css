@@ -1,0 +1,205 @@
+/*
+  Auth Pages Stylesheet (SignIn & SignUp)
+  Strictly uses theme.css variables — no hardcoded colors or styles.
+*/
+
+.auth-page {
+  padding: var(--space-8) var(--space-2);
+  background-color: var(--color-bg);
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.auth-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-6) var(--space-4);
+  max-width: 440px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .auth-card {
+    padding: var(--space-6) var(--space-6);
+  }
+}
+
+/* Brand Logo Header */
+.auth-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: var(--space-4);
+}
+
+.auth-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  text-decoration: none;
+  margin-bottom: var(--space-2);
+}
+
+.auth-logo-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.auth-wordmark {
+  font-family: var(--font-brand) !important;
+  font-size: 1.7rem !important;
+  font-weight: 800 !important;
+  color: var(--color-primary) !important;
+  letter-spacing: -0.5px !important;
+  line-height: 1 !important;
+}
+
+.auth-logo-accent {
+  color: var(--color-accent-gold) !important;
+  margin-left: 1px !important;
+}
+
+.auth-title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+  font-family: var(--font-heading);
+}
+
+.auth-subtitle {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-body);
+}
+
+/* Form Layout */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.form-label {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.form-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--space-2);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-body);
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  background-color: var(--color-surface);
+  border-color: var(--color-primary);
+}
+
+.form-input.input-error {
+  border-color: var(--color-error);
+  background-color: var(--color-error-bg);
+}
+
+.field-error-message {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+  margin-top: 2px;
+}
+
+/* Primary Auth Submit Button */
+.btn-auth-submit {
+  width: 100% !important;
+  height: 46px !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  font-family: var(--font-body) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--space-1) !important;
+  background-color: var(--color-primary) !important;
+  color: var(--color-surface) !important;
+  border: 1px solid var(--color-primary) !important;
+  border-radius: var(--radius-md) !important;
+  margin-top: var(--space-1) !important;
+  cursor: pointer !important;
+  transition: background-color var(--transition-fast), transform var(--transition-fast) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.btn-auth-submit:hover {
+  background-color: var(--color-primary-hover) !important;
+  border-color: var(--color-primary-hover) !important;
+}
+
+/* Disclaimer & Footer Text */
+.auth-disclaimer {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: var(--space-3);
+  line-height: var(--line-height-body);
+}
+
+.auth-card-footer {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.auth-switch-text {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+.auth-switch-link {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.auth-switch-link:hover {
+  text-decoration: underline;
+}

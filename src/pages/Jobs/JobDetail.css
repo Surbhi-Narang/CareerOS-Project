@@ -1,0 +1,202 @@
+/*
+  JobDetail Page Stylesheet
+  Strictly uses theme.css variables — matching purple/indigo design system.
+*/
+
+.job-detail-page {
+  padding: var(--space-6) 0 var(--space-8) 0;
+  background-color: var(--color-bg);
+  min-height: calc(100vh - 140px);
+}
+
+.job-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  margin-bottom: var(--space-1);
+}
+
+.back-link:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+/* Card */
+.job-detail-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.detail-header-top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.detail-company-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.detail-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-company-name {
+  font-size: var(--font-size-small);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-job-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+.detail-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* Meta Grid */
+.detail-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+@media (min-width: 640px) {
+  .detail-meta-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.meta-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.meta-icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.meta-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  display: block;
+}
+
+.meta-val {
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* Sections */
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.section-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 6px;
+}
+
+.detail-desc-text {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.detail-skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-footer-actions {
+  margin-top: var(--space-2);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn-apply-lg {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 14px 28px !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  background-color: var(--color-primary) !important;
+  color: var(--color-surface) !important;
+  border-radius: var(--radius-md) !important;
+  border: none !important;
+  box-shadow: var(--shadow-md) !important;
+  cursor: pointer !important;
+  transition: background-color var(--transition-fast), transform var(--transition-fast) !important;
+}
+
+.btn-apply-lg:hover {
+  background-color: var(--color-primary-hover) !important;
+  transform: translateY(-2px) !important;
+}
+
+.job-not-found-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
