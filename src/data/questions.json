@@ -1,0 +1,254 @@
+[
+  {
+    "id": "q_1",
+    "company": "TechNova Solutions",
+    "topic": "React & Web Dev",
+    "question": "Explain Virtual DOM diffing and how React keys prevent unnecessary re-renders in dynamic lists.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_2",
+    "company": "TechNova Solutions",
+    "topic": "DSA",
+    "question": "How would you optimize search in a large sorted array of 10 million elements?",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q_3",
+    "company": "TechNova Solutions",
+    "topic": "JavaScript",
+    "question": "Write a function to flatten a deeply nested JavaScript object or array without using built-in Array.prototype.flat().",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_4",
+    "company": "TechNova Solutions",
+    "topic": "System Design",
+    "question": "Design a responsive Web Component library and asset caching strategy for high-performance SaaS dashboards.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_5",
+    "company": "TechNova Solutions",
+    "topic": "HR & Behavioral",
+    "question": "Why do you want to work at TechNova Solutions, and how do you stay updated with modern web standards?",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q_6",
+    "company": "TechNova Solutions",
+    "topic": "HR & Behavioral",
+    "question": "Describe a challenging bug you encountered in a team project and how you resolved it under deadline.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q_7",
+    "company": "CloudScale Systems",
+    "topic": "DSA",
+    "question": "How do you detect a cycle in a Directed Graph using Depth First Search (DFS)?",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_8",
+    "company": "CloudScale Systems",
+    "topic": "DSA",
+    "question": "Given an array of integers representing network ping latencies, find the contiguous subarray with the largest sum in O(N) time.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_9",
+    "company": "CloudScale Systems",
+    "topic": "System Design",
+    "question": "Design a high-throughput REST API rate limiter using Redis token bucket or leaky bucket algorithm.",
+    "difficulty": "Hard"
+  },
+  {
+    "id": "q_10",
+    "company": "CloudScale Systems",
+    "topic": "Database & SQL",
+    "question": "What is database indexing? Explain B-Tree vs Hash indexing and when each is preferred.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_11",
+    "company": "CloudScale Systems",
+    "topic": "System Design",
+    "question": "How do you handle zero-downtime database schema migrations in a distributed microservices environment?",
+    "difficulty": "Hard"
+  },
+  {
+    "id": "q_12",
+    "company": "CloudScale Systems",
+    "topic": "HR & Behavioral",
+    "question": "How do you prioritize tasks when responding to a critical production outage or server crash?",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_13",
+    "company": "CognitiveX Labs",
+    "topic": "Python & ML",
+    "question": "Explain the difference between Supervised, Unsupervised, and Reinforcement Learning with real-world application examples.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q_14",
+    "company": "CognitiveX Labs",
+    "topic": "DSA",
+    "question": "Implement a K-Nearest Neighbors (KNN) distance calculation function using Euclidean distance in Python.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_15",
+    "company": "CognitiveX Labs",
+    "topic": "DSA",
+    "question": "Given a stream of real-time sensor numbers, design a Median Finder data structure supporting O(log N) insertions.",
+    "difficulty": "Hard"
+  },
+  {
+    "id": "q_16",
+    "company": "CognitiveX Labs",
+    "topic": "System Design",
+    "question": "Design a scalable data ingestion pipeline to stream and process 1 million AI telemetry events per second.",
+    "difficulty": "Hard"
+  },
+  {
+    "id": "q_17",
+    "company": "CognitiveX Labs",
+    "topic": "HR & Behavioral",
+    "question": "What motivated you to specialize in AI/ML, and how do you identify and mitigate bias in training datasets?",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q_18",
+    "company": "CognitiveX Labs",
+    "topic": "HR & Behavioral",
+    "question": "Describe a project where an initial hypothesis or machine learning model failed, and how you iterated to improve it.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_19",
+    "company": "FinTech Core",
+    "topic": "System Design",
+    "question": "How do you ensure transaction idempotency and prevent double-spending in digital payment gateways?",
+    "difficulty": "Hard"
+  },
+  {
+    "id": "q_20",
+    "company": "FinTech Core",
+    "topic": "Database & SQL",
+    "question": "Explain ACID properties in SQL databases and isolation level trade-offs (Dirty Reads vs Phantom Reads).",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_21",
+    "company": "FinTech Core",
+    "topic": "DSA",
+    "question": "Design a Two-Sum financial ledger balancing algorithm that identifies complementary transactions summing to zero in O(N) time.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q_22",
+    "company": "FinTech Core",
+    "topic": "DSA",
+    "question": "Implement a Least Recently Used (LRU) Cache for fast session lookups using a Hash Map and Doubly Linked List.",
+    "difficulty": "Hard"
+  },
+  {
+    "id": "q_23",
+    "company": "FinTech Core",
+    "topic": "System Design",
+    "question": "Design an audit logging system that records every financial modification with cryptographically verifiable logs.",
+    "difficulty": "Hard"
+  },
+  {
+    "id": "q_24",
+    "company": "FinTech Core",
+    "topic": "HR & Behavioral",
+    "question": "Why do you want to work in financial technology and how do you handle high-pressure production incidents?",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q_25",
+    "company": "Veloce Technologies",
+    "topic": "React & Web Dev",
+    "question": "What are React custom hooks and how do useMemo/useCallback optimize expensive computations?",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_26",
+    "company": "Veloce Technologies",
+    "topic": "JavaScript",
+    "question": "Explain browser Event Loop, Microtasks (Promises) vs Macrotasks (setTimeout execution order).",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_27",
+    "company": "Veloce Technologies",
+    "topic": "DSA",
+    "question": "Find the maximum subarray sum in O(N) time complexity using Kadane's Algorithm.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_28",
+    "company": "Veloce Technologies",
+    "topic": "DSA",
+    "question": "Given two sorted arrays, merge them into a single sorted array without using extra memory space O(1).",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_29",
+    "company": "Veloce Technologies",
+    "topic": "System Design",
+    "question": "Explain how WebSockets enable real-time bidirectional communication compared to HTTP polling.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_30",
+    "company": "Veloce Technologies",
+    "topic": "HR & Behavioral",
+    "question": "Tell me about a time you had to optimize web page load times or rewrite legacy code under tight timelines.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q_31",
+    "company": "Nexus Apps",
+    "topic": "React & Web Dev",
+    "question": "Compare Client-Side Rendering (CSR) vs Server-Side Rendering (SSR) for mobile web performance.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q_32",
+    "company": "Nexus Apps",
+    "topic": "DSA",
+    "question": "Find the Lowest Common Ancestor (LCA) of two nodes in a Binary Tree.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q_33",
+    "company": "Nexus Apps",
+    "topic": "DSA",
+    "question": "Given a string of brackets ()[]{}, determine if the input string is valid using a Stack data structure.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q_34",
+    "company": "Nexus Apps",
+    "topic": "System Design",
+    "question": "Design an offline-first data sync strategy for mobile apps operating in low connectivity environments.",
+    "difficulty": "Hard"
+  },
+  {
+    "id": "q_35",
+    "company": "Nexus Apps",
+    "topic": "HR & Behavioral",
+    "question": "Why do you want to build mobile apps at Nexus Apps, and what makes a mobile user interface intuitive?",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q_36",
+    "company": "Nexus Apps",
+    "topic": "HR & Behavioral",
+    "question": "Tell me about a time you had a conflict with a teammate regarding technical architecture design.",
+    "difficulty": "Easy"
+  }
+]

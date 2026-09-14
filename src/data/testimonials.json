@@ -1,0 +1,18 @@
+[
+  {
+    "id": "test_1",
+    "name": "Aarav Sharma",
+    "role": "SDE-1 at CloudScale",
+    "college": "IIT Bombay '25",
+    "quote": "Juggling 9 different platforms before CareerOS was exhausting. Having one centralized dashboard for job applications, DSA tracking, and interview prep changed everything.",
+    "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "test_2",
+    "name": "Priya Patel",
+    "role": "Frontend Intern at TechNova",
+    "college": "VIT Vellore '26",
+    "quote": "The Readiness Score gave me clear direction on what skills to add next. The vertical application stepper tracker kept me organized during campus drives!",
+    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80"
+  }
+]

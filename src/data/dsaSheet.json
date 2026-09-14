@@ -1,0 +1,170 @@
+[
+  {
+    "id": "dsa_1",
+    "title": "Two Sum",
+    "topic": "Arrays & Hashing",
+    "difficulty": "Easy",
+    "leetcodeUrl": "https://leetcode.com/problems/two-sum/"
+  },
+  {
+    "id": "dsa_2",
+    "title": "Valid Anagram",
+    "topic": "Arrays & Hashing",
+    "difficulty": "Easy",
+    "leetcodeUrl": "https://leetcode.com/problems/valid-anagram/"
+  },
+  {
+    "id": "dsa_3",
+    "title": "Contains Duplicate",
+    "topic": "Arrays & Hashing",
+    "difficulty": "Easy",
+    "leetcodeUrl": "https://leetcode.com/problems/contains-duplicate/"
+  },
+  {
+    "id": "dsa_4",
+    "title": "Group Anagrams",
+    "topic": "Arrays & Hashing",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/group-anagrams/"
+  },
+  {
+    "id": "dsa_5",
+    "title": "Top K Frequent Elements",
+    "topic": "Arrays & Hashing",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/top-k-frequent-elements/"
+  },
+  {
+    "id": "dsa_6",
+    "title": "Valid Palindrome",
+    "topic": "Two Pointers",
+    "difficulty": "Easy",
+    "leetcodeUrl": "https://leetcode.com/problems/valid-palindrome/"
+  },
+  {
+    "id": "dsa_7",
+    "title": "3Sum",
+    "topic": "Two Pointers",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/3sum/"
+  },
+  {
+    "id": "dsa_8",
+    "title": "Container With Most Water",
+    "topic": "Two Pointers",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/container-with-most-water/"
+  },
+  {
+    "id": "dsa_9",
+    "title": "Best Time to Buy and Sell Stock",
+    "topic": "Sliding Window",
+    "difficulty": "Easy",
+    "leetcodeUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+  },
+  {
+    "id": "dsa_10",
+    "title": "Longest Substring Without Repeating Characters",
+    "topic": "Sliding Window",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+  },
+  {
+    "id": "dsa_11",
+    "title": "Valid Parentheses",
+    "topic": "Stack",
+    "difficulty": "Easy",
+    "leetcodeUrl": "https://leetcode.com/problems/valid-parentheses/"
+  },
+  {
+    "id": "dsa_12",
+    "title": "Search in Rotated Sorted Array",
+    "topic": "Binary Search",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+  },
+  {
+    "id": "dsa_13",
+    "title": "Reverse Linked List",
+    "topic": "Linked List",
+    "difficulty": "Easy",
+    "leetcodeUrl": "https://leetcode.com/problems/reverse-linked-list/"
+  },
+  {
+    "id": "dsa_14",
+    "title": "Merge Two Sorted Lists",
+    "topic": "Linked List",
+    "difficulty": "Easy",
+    "leetcodeUrl": "https://leetcode.com/problems/merge-two-sorted-lists/"
+  },
+  {
+    "id": "dsa_15",
+    "title": "Linked List Cycle",
+    "topic": "Linked List",
+    "difficulty": "Easy",
+    "leetcodeUrl": "https://leetcode.com/problems/linked-list-cycle/"
+  },
+  {
+    "id": "dsa_16",
+    "title": "Invert Binary Tree",
+    "topic": "Trees",
+    "difficulty": "Easy",
+    "leetcodeUrl": "https://leetcode.com/problems/invert-binary-tree/"
+  },
+  {
+    "id": "dsa_17",
+    "title": "Binary Tree Level Order Traversal",
+    "topic": "Trees",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+  },
+  {
+    "id": "dsa_18",
+    "title": "Validate Binary Search Tree",
+    "topic": "Trees",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/validate-binary-search-tree/"
+  },
+  {
+    "id": "dsa_19",
+    "title": "Number of Islands",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/number-of-islands/"
+  },
+  {
+    "id": "dsa_20",
+    "title": "Course Schedule",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/course-schedule/"
+  },
+  {
+    "id": "dsa_21",
+    "title": "Climbing Stairs",
+    "topic": "Dynamic Programming",
+    "difficulty": "Easy",
+    "leetcodeUrl": "https://leetcode.com/problems/climbing-stairs/"
+  },
+  {
+    "id": "dsa_22",
+    "title": "Coin Change",
+    "topic": "Dynamic Programming",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/coin-change/"
+  },
+  {
+    "id": "dsa_23",
+    "title": "Longest Increasing Subsequence",
+    "topic": "Dynamic Programming",
+    "difficulty": "Medium",
+    "leetcodeUrl": "https://leetcode.com/problems/longest-increasing-subsequence/"
+  },
+  {
+    "id": "dsa_24",
+    "title": "Word Search",
+    "topic": "Backtracking",
+    "difficulty": "Hard",
+    "leetcodeUrl": "https://leetcode.com/problems/word-search/"
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "res_1",
+    "title": "NeetCode 150 Blind Roadmap",
+    "category": "Course",
+    "description": "Structured video curriculum & patterns guide for mastering technical coding interview questions.",
+    "url": "https://neetcode.io"
+  },
+  {
+    "id": "res_2",
+    "title": "Striver A2Z DSA Course Sheet",
+    "category": "Course",
+    "description": "Step-by-step topicwise coding sheet covering Arrays to Graph & DP algorithms.",
+    "url": "https://takeuforward.org"
+  },
+  {
+    "id": "res_3",
+    "title": "System Design Primer by Donnemartin",
+    "category": "Article",
+    "description": "Open-source deep dive guide into scalable web architecture, caching, microservices, and databases.",
+    "url": "https://github.com/donnemartin/system-design-primer"
+  },
+  {
+    "id": "res_4",
+    "title": "MDN JavaScript ES6+ Specification",
+    "category": "Article",
+    "description": "Official documentation for JavaScript closures, promises, async/await, event loop, and DOM APIs.",
+    "url": "https://developer.mozilla.org"
+  },
+  {
+    "id": "res_5",
+    "title": "Gaurav Sen — System Design Video Series",
+    "category": "YouTube",
+    "description": "Clear visual explanations of load balancing, message queues, database sharding, and rate limiting.",
+    "url": "https://youtube.com"
+  },
+  {
+    "id": "res_6",
+    "title": "React Official Documentation & Guides",
+    "category": "Article",
+    "description": "Complete guide on React 18 component lifecycle, hooks, state management, and rendering optimization.",
+    "url": "https://react.dev"
+  },
+  {
+    "id": "res_7",
+    "title": "FreeCodeCamp Full Web Development Course",
+    "category": "YouTube",
+    "description": "8-hour comprehensive tutorial covering HTML5, CSS Grid, JavaScript ES6+, and Node.js backend APIs.",
+    "url": "https://youtube.com"
+  },
+  {
+    "id": "res_8",
+    "title": "ByteByteGo — ByteByteByte Newsletter & Diagrams",
+    "category": "Article",
+    "description": "Illustrated architecture breakdowns of real-world systems like Netflix, Uber, and Discord.",
+    "url": "https://bytebytego.com"
+  },
+  {
+    "id": "res_9",
+    "title": "CS50 Introduction to Computer Science",
+    "category": "Course",
+    "description": "Harvard's foundational computer science course covering memory management, C, Python, and SQL.",
+    "url": "https://pll.harvard.edu/course/cs50-introduction-computer-science"
+  },
+  {
+    "id": "res_10",
+    "title": "Abdul Bari — Algorithms Masterclass",
+    "category": "YouTube",
+    "description": "In-depth mathematical breakdowns of Divide & Conquer, Greedy method, and Dynamic Programming.",
+    "url": "https://youtube.com"
+  },
+  {
+    "id": "res_11",
+    "title": "LeetCode Discuss — Behavioral Interview Tips",
+    "category": "Article",
+    "description": "STAR technique framework (Situation, Task, Action, Result) for answering behavioral HR rounds.",
+    "url": "https://leetcode.com/discuss"
+  },
+  {
+    "id": "res_12",
+    "title": "SQLZoo Interactive Database Practice",
+    "category": "Course",
+    "description": "Interactive SQL tutorials and live query challenges from basic SELECTs to subqueries and JOINs.",
+    "url": "https://sqlzoo.net"
+  }
+]
