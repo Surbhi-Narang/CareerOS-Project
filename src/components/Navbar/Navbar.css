@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&display=swap');
+
+/*
+  Navbar Stylesheet
+  Sticky navbar with subtle border, responsive navigation, and shared icon-text spacing.
+*/
+
+.navbar-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+/* Brand Logo */
+.navbar-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  text-decoration: none;
+}
+
+.logo-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(47, 93, 98, 0.2);
+}
+
+.brand-wordmark {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif !important;
+  font-size: 1.7rem !important;
+  font-weight: 800 !important;
+  color: var(--color-primary) !important;
+  letter-spacing: -0.5px !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.logo-accent {
+  color: var(--color-accent-gold) !important;
+  margin-left: 1px !important;
+}
+
+/* Shared Reusable Class for Nav Links & Buttons containing an Icon + Label */
+.nav-icon-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.justify-center {
+  justify-content: center !important;
+}
+
+/* Desktop Navigation */
+.navbar-desktop-nav {
+  display: none;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.nav-link {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+  padding: var(--space-1) var(--space-1);
+  text-decoration: none;
+}
+
+.nav-btn-link {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-primary);
+}
+
+/* Desktop Auth Actions */
+.navbar-auth-actions {
+  display: none;
+  align-items: center;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.auth-user-dropdown {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* User Badge Link to /profile */
+.user-badge-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  background-color: var(--color-bg-alt);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.user-badge-link:hover .user-badge {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.user-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.user-name {
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.btn-icon:hover {
+  color: var(--color-error);
+  background-color: var(--color-error-bg);
+}
+
+/* Mobile Toggle */
+.navbar-mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary);
+  padding: var(--space-1);
+  border-radius: var(--radius-md);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Mobile Drawer */
+.navbar-mobile-drawer {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-3);
+  box-shadow: var(--shadow-md);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mobile-nav-link {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  padding: var(--space-1) 0;
+  text-align: left;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-auth-divider {
+  height: 1px;
+  background-color: var(--color-border);
+  margin: var(--space-2) 0;
+}
+
+.mobile-user-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mobile-user-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+}
+
+.user-avatar-lg {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.mobile-user-name {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+}
+
+.mobile-user-email {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+.mobile-auth-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.mt-2 {
+  margin-top: var(--space-2);
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 768px) {
+  .navbar-desktop-nav {
+    display: flex;
+  }
+
+  .navbar-auth-actions {
+    display: flex;
+  }
+
+  .navbar-mobile-toggle {
+    display: none;
+  }
+
+  .navbar-mobile-drawer {
+    display: none;
+  }
+}
