@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { ArrowLeft, MapPin, DollarSign, Clock, Building, Sparkles, ExternalLink, CheckCircle2, X, Briefcase } from 'lucide-react';
+import { addApplication } from '../../store/applicationsSlice';
+import { useToast } from '../../context/ToastContext';
 import jobsData from '../../data/jobs.json';
 import './JobDetail.css';
 
@@ -12,9 +15,10 @@ import './JobDetail.css';
 export default function JobDetail() {
   const { jobId } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { showToast } = useToast();
 
   const [showApplyModal, setShowApplyModal] = useState(false);
-  const [toastMessage, setToastMessage] = useState(null);
 
   // Find job matching URL param jobId
   const job = jobsData.find((j) => j.id === jobId);
@@ -66,19 +70,13 @@ export default function JobDetail() {
 
       const updated = [newApp, ...apps];
       localStorage.setItem('career_os_applications', JSON.stringify(updated));
-      triggerToast(`Marked "${job.title}" at ${job.company} as Applied!`);
+      dispatch(addApplication(newApp));
+      showToast(`Marked "${job.title}" at ${job.company} as Applied!`, 'success');
     } else {
-      triggerToast(`Already tracking application for "${job.title}".`);
+      showToast(`Already tracking application for "${job.title}".`, 'error');
     }
 
     setShowApplyModal(false);
-  };
-
-  const triggerToast = (msg) => {
-    setToastMessage(msg);
-    setTimeout(() => {
-      setToastMessage(null);
-    }, 4000);
   };
 
   if (!job) {
@@ -108,14 +106,6 @@ export default function JobDetail() {
         <Link to="/jobs" className="back-link">
           <ArrowLeft size={16} /> Back to Jobs
         </Link>
-
-        {/* Toast Alert */}
-        {toastMessage && (
-          <div className="jobs-toast" role="alert">
-            <CheckCircle2 size={18} />
-            <span>{toastMessage}</span>
-          </div>
-        )}
 
         {/* Main Job Detail Card */}
         <div className="job-detail-card">
