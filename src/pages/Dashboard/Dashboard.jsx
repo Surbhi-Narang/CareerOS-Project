@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useAuth } from '../../hooks/useAuth';
+import { selectApplications } from '../../store/applicationsSlice';
 import { TrendingUp, Kanban, Target, Award, ArrowRight, UserCheck, Sparkles, BookOpen, AlertCircle, CheckCircle2 } from 'lucide-react';
 import './Dashboard.css';
 
@@ -12,10 +14,11 @@ import './Dashboard.css';
 export default function Dashboard() {
   const { user } = useAuth();
   const [profileData, setProfileData] = useState(null);
-  const [applicationsCount, setApplicationsCount] = useState(0);
+  const applications = useSelector(selectApplications);
+  const applicationsCount = applications.length;
 
   useEffect(() => {
-    // 1. Read profile from localStorage
+    // Read profile from localStorage
     const savedProfile = localStorage.getItem('career_os_profile');
     if (savedProfile) {
       try {
@@ -23,22 +26,6 @@ export default function Dashboard() {
       } catch (err) {
         console.error('Failed to parse career_os_profile', err);
       }
-    }
-
-    // 2. Read applications count from localStorage
-    const savedApps = localStorage.getItem('career_os_applications');
-    if (savedApps) {
-      try {
-        const parsedApps = JSON.parse(savedApps);
-        if (Array.isArray(parsedApps)) {
-          setApplicationsCount(parsedApps.length);
-        }
-      } catch (err) {
-        console.error('Failed to parse career_os_applications', err);
-      }
-    } else {
-      // Default sample applications count for PE-1 preview if empty
-      setApplicationsCount(3);
     }
   }, []);
 
