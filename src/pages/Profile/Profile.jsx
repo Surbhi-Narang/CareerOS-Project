@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
+import { useToast } from '../../context/ToastContext';
+import InputField from '../../components/form/InputField';
+import SelectField from '../../components/form/SelectField';
 import { User, Briefcase, Link as LinkIcon, Award, Plus, Trash2, Save, CheckCircle2, Building, GraduationCap, MapPin, Phone, Camera, Globe, Code2 } from 'lucide-react';
 import './Profile.css';
 
@@ -10,7 +13,30 @@ import './Profile.css';
  */
 export default function Profile() {
   const { user } = useAuth();
+  const { showToast } = useToast();
   const [saveSuccess, setSaveSuccess] = useState(false);
+
+  // Add Skill Form state (plain React state)
+  const [newSkill, setNewSkill] = useState({
+    name: '',
+    level: '',
+  });
+  const [skillTouched, setSkillTouched] = useState({});
+
+  // Skill Form validation rules: name required, level required
+  const getSkillErrors = (values) => {
+    const errs = {};
+    if (!values.name.trim()) {
+      errs.name = 'Skill name is required.';
+    }
+    if (!values.level) {
+      errs.level = 'Skill level is required (Beginner, Intermediate, Advanced).';
+    }
+    return errs;
+  };
+
+  const skillErrors = getSkillErrors(newSkill);
+  const isSkillFormValid = Object.keys(skillErrors).length === 0 && newSkill.name.trim() !== '' && newSkill.level !== '';
 
   // Initial State setup
   const [profile, setProfile] = useState({
@@ -76,31 +102,55 @@ export default function Profile() {
     }));
   };
 
-  // Skill Handlers
-  const handleAddSkill = () => {
-    const newSkill = {
+  // Add Skill Form change handler
+  const handleNewSkillChange = (e) => {
+    const { name, value } = e.target;
+    setNewSkill((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Add Skill Form blur handler
+  const handleNewSkillBlur = (e) => {
+    const { name } = e.target;
+    setSkillTouched((prev) => ({ ...prev, [name]: true }));
+  };
+
+  // Add Skill Form submit handler
+  const handleAddSkillSubmit = (e) => {
+    if (e) e.preventDefault();
+
+    // Mark all skill inputs as touched
+    setSkillTouched({ name: true, level: true });
+
+    if (!isSkillFormValid) return;
+
+    const skillToAdd = {
       id: `sk_${Date.now()}`,
-      name: '',
-      level: 'Intermediate',
+      name: newSkill.name.trim(),
+      level: newSkill.level,
     };
-    setProfile((prev) => ({
-      ...prev,
-      skills: [...prev.skills, newSkill],
-    }));
+
+    const updatedSkills = [...profile.skills, skillToAdd];
+    const updatedProfile = { ...profile, skills: updatedSkills };
+
+    setProfile(updatedProfile);
+    localStorage.setItem('career_os_profile', JSON.stringify(updatedProfile));
+
+    // Clear form state
+    setNewSkill({ name: '', level: '' });
+    setSkillTouched({});
+
+    // Toast feedback
+    showToast(`Added "${skillToAdd.name}" (${skillToAdd.level}) to skills!`, 'success');
   };
 
-  const handleSkillChange = (id, field, value) => {
-    setProfile((prev) => ({
-      ...prev,
-      skills: prev.skills.map((s) => (s.id === id ? { ...s, [field]: value } : s)),
-    }));
-  };
-
+  // Remove existing skill handler
   const handleRemoveSkill = (id) => {
-    setProfile((prev) => ({
-      ...prev,
-      skills: prev.skills.filter((s) => s.id !== id),
-    }));
+    const skillToRemove = profile.skills.find((s) => s.id === id);
+    const updatedSkills = profile.skills.filter((s) => s.id !== id);
+    const updatedProfile = { ...profile, skills: updatedSkills };
+    setProfile(updatedProfile);
+    localStorage.setItem('career_os_profile', JSON.stringify(updatedProfile));
+    showToast(`Removed skill: ${skillToRemove?.name || ''}`, 'error');
   };
 
   // Save profile state as single object to localStorage
@@ -110,6 +160,7 @@ export default function Profile() {
 
     // Show saved toast message
     setSaveSuccess(true);
+    showToast('Profile saved successfully to your workspace!', 'success');
     setTimeout(() => {
       setSaveSuccess(false);
     }, 3500);
@@ -460,49 +511,72 @@ export default function Profile() {
             </div>
           </div>
 
-          {/* SECTION 4: DYNAMIC SKILLS EDITOR */}
+          {/* SECTION 4: DYNAMIC SKILLS EDITOR & ADD SKILL FORM */}
           <div className="profile-card">
-            <div className="card-section-header flex-between">
-              <div className="flex-align">
-                <Award size={22} className="section-header-icon" />
-                <div>
-                  <h2 className="card-section-title">Technical Skills & Proficiency</h2>
-                  <p className="card-section-desc">Add skills to boost your placement readiness score</p>
-                </div>
+            <div className="card-section-header">
+              <Award size={22} className="section-header-icon" />
+              <div>
+                <h2 className="card-section-title">Technical Skills & Proficiency</h2>
+                <p className="card-section-desc">Add skills to boost your placement readiness score</p>
+              </div>
+            </div>
+
+            {/* Add Skill Form with Validation */}
+            <div className="add-skill-form-container">
+              <h3 className="add-skill-form-heading">Add a New Skill</h3>
+              <div className="add-skill-fields-grid">
+                <InputField
+                  label="Skill Name"
+                  id="skillName"
+                  name="name"
+                  placeholder="e.g. React.js, Python, PostgreSQL"
+                  value={newSkill.name}
+                  onChange={handleNewSkillChange}
+                  onBlur={handleNewSkillBlur}
+                  error={skillTouched.name ? skillErrors.name : ''}
+                  required
+                />
+                <SelectField
+                  label="Proficiency Level"
+                  id="skillLevel"
+                  name="level"
+                  value={newSkill.level}
+                  onChange={handleNewSkillChange}
+                  onBlur={handleNewSkillBlur}
+                  error={skillTouched.level ? skillErrors.level : ''}
+                  required
+                  placeholder="Select Level"
+                  options={[
+                    { value: 'Beginner', label: 'Beginner' },
+                    { value: 'Intermediate', label: 'Intermediate' },
+                    { value: 'Advanced', label: 'Advanced' },
+                  ]}
+                />
               </div>
 
               <button
                 type="button"
-                onClick={handleAddSkill}
-                className="btn btn-outline btn-add-skill"
+                onClick={handleAddSkillSubmit}
+                disabled={!isSkillFormValid}
+                className="btn btn-primary btn-add-skill-action"
               >
                 <Plus size={16} />
                 <span>Add Skill</span>
               </button>
             </div>
 
+            {/* Existing Skills List */}
             <div className="skills-list">
+              <h3 className="skills-list-heading">Your Added Skills ({profile.skills.length})</h3>
               {profile.skills.length === 0 ? (
-                <p className="empty-skills-msg">No skills added yet. Click "Add Skill" above.</p>
+                <p className="empty-skills-msg">No skills added yet. Use the form above to add your first skill.</p>
               ) : (
                 profile.skills.map((skill) => (
                   <div key={skill.id} className="skill-row">
-                    <input
-                      type="text"
-                      className="form-input skill-name-input"
-                      placeholder="e.g. React.js, Python, SQL"
-                      value={skill.name}
-                      onChange={(e) => handleSkillChange(skill.id, 'name', e.target.value)}
-                    />
-                    <select
-                      className="form-input form-select skill-level-select"
-                      value={skill.level}
-                      onChange={(e) => handleSkillChange(skill.id, 'level', e.target.value)}
-                    >
-                      <option value="Beginner">Beginner</option>
-                      <option value="Intermediate">Intermediate</option>
-                      <option value="Advanced">Advanced</option>
-                    </select>
+                    <span className="skill-name-badge">{skill.name}</span>
+                    <span className={`skill-level-pill level-${(skill.level || '').toLowerCase()}`}>
+                      {skill.level}
+                    </span>
                     <button
                       type="button"
                       onClick={() => handleRemoveSkill(skill.id)}
@@ -510,7 +584,7 @@ export default function Profile() {
                       title="Remove Skill"
                       aria-label="Remove Skill"
                     >
-                      <Trash2 size={18} />
+                      <Trash2 size={16} />
                     </button>
                   </div>
                 ))
