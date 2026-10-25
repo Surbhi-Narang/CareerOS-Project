@@ -1,8 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import { useAuth } from './hooks/useAuth';
-import { CheckCircle2, Info } from 'lucide-react';
 
 // Shared Layout Components
 import Navbar from './components/Navbar/Navbar';
@@ -22,36 +20,8 @@ import InterviewPrep from './pages/InterviewPrep/InterviewPrep';
 import NotFound from './pages/NotFound/NotFound';
 
 function AppContent() {
-  const { authNotification } = useAuth();
-
   return (
     <>
-      {/* Toast Notification Overlay */}
-      {authNotification && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '80px',
-            right: '24px',
-            zIndex: 9999,
-            backgroundColor: authNotification.type === 'info' ? '#312E81' : '#065F46',
-            color: '#FFFFFF',
-            padding: '12px 20px',
-            borderRadius: '10px',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            fontSize: '0.9rem',
-            fontWeight: 600,
-            animation: 'fadeIn 0.3s ease',
-          }}
-        >
-          {authNotification.type === 'info' ? <Info size={18} /> : <CheckCircle2 size={18} />}
-          <span>{authNotification.message}</span>
-        </div>
-      )}
-
       <Navbar />
       <main style={{ flex: 1 }}>
         <Routes>
@@ -62,6 +32,14 @@ function AppContent() {
           {/* Protected Routes (Require mock auth login) */}
           <Route
             path="/interview-prep"
+            element={
+              <ProtectedRoute>
+                <InterviewPrep />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/prep"
             element={
               <ProtectedRoute>
                 <InterviewPrep />
