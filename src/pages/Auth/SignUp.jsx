@@ -1,62 +1,115 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { useToast } from '../../context/ToastContext';
+import InputField from '../../components/form/InputField';
 import './Auth.css';
 
 /**
- * SignUp Page Component (Teammate 1)
- * Registration form with controlled inputs, field-level validation, and mock AuthContext integration.
+ * SignUp Page Component
+ * Registration form with controlled InputField components,
+ * plain React state validation (on blur & on submit), disabled submit when invalid,
+ * clear form on success, and ToastContext notifications.
  */
 export default function SignUp() {
   const { signup } = useAuth();
+  const { showToast } = useToast();
   const navigate = useNavigate();
 
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [errors, setErrors] = useState({});
+  // Plain React state for form inputs
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
 
-  const validate = () => {
-    const newErrors = {};
+  // Track which fields have lost focus (blurred)
+  const [touched, setTouched] = useState({});
+
+  // Helper validation function for all fields
+  const getFieldErrors = (values) => {
+    const errs = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!fullName.trim()) {
-      newErrors.fullName = 'Full name is required.';
+    // Full name is required
+    if (!values.fullName.trim()) {
+      errs.fullName = 'Full name is required.';
     }
 
-    if (!email.trim()) {
-      newErrors.email = 'Email is required.';
-    } else if (!emailRegex.test(email.trim())) {
-      newErrors.email = 'Please enter a valid email address.';
+    // Email format validation
+    if (!values.email.trim()) {
+      errs.email = 'Email address is required.';
+    } else if (!emailRegex.test(values.email.trim())) {
+      errs.email = 'Please enter a valid email address.';
     }
 
-    if (!password) {
-      newErrors.password = 'Password is required.';
-    } else if (password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters.';
+    // Password must be at least 8 characters with at least one number
+    if (!values.password) {
+      errs.password = 'Password is required.';
+    } else if (values.password.length < 8) {
+      errs.password = 'Password must be at least 8 characters long.';
+    } else if (!/\d/.test(values.password)) {
+      errs.password = 'Password must contain at least one number.';
     }
 
-    if (!confirmPassword) {
-      newErrors.confirmPassword = 'Confirm password is required.';
-    } else if (password !== confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match.';
+    // Confirm password must match password
+    if (!values.confirmPassword) {
+      errs.confirmPassword = 'Confirm password is required.';
+    } else if (values.confirmPassword !== values.password) {
+      errs.confirmPassword = 'Passwords do not match.';
     }
 
-    return newErrors;
+    return errs;
   };
 
+  // Compute errors and form validity
+  const errors = getFieldErrors(formData);
+  const isValid = Object.keys(errors).length === 0;
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Mark field as touched when user leaves the field
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+  };
+
+  // Form submission handler
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate();
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
+    // Mark all fields touched on submit attempt
+    setTouched({
+      fullName: true,
+      email: true,
+      password: true,
+      confirmPassword: true,
+    });
 
-    setErrors({});
-    signup(fullName, email, password);
+    // Block submission if form has errors
+    if (!isValid) return;
+
+    // Register user with mock AuthContext
+    signup(formData.fullName.trim(), formData.email.trim(), formData.password);
+
+    // Show success toast notification
+    showToast('Account created successfully! Welcome to CareerOS.', 'success');
+
+    // Clear form state
+    setFormData({
+      fullName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    });
+    setTouched({});
+
+    // Navigate to dashboard
     navigate('/dashboard');
   };
 
@@ -81,99 +134,76 @@ export default function SignUp() {
             <p className="auth-subtitle">Join CareerOS to track your placement journey</p>
           </div>
 
-          {/* Form */}
+          {/* Registration Form */}
           <form onSubmit={handleSubmit} className="auth-form" noValidate>
-            <div className="form-group">
-              <label htmlFor="fullName" className="form-label">
-                Full Name
-              </label>
-              <input
-                id="fullName"
-                type="text"
-                className={`form-input ${errors.fullName ? 'input-error' : ''}`}
-                placeholder="John Doe"
-                value={fullName}
-                onChange={(e) => {
-                  setFullName(e.target.value);
-                  if (errors.fullName) setErrors({ ...errors, fullName: '' });
-                }}
-              />
-              {errors.fullName && (
-                <span className="field-error-message">{errors.fullName}</span>
-              )}
-            </div>
+            <InputField
+              label="Full Name"
+              id="fullName"
+              name="fullName"
+              type="text"
+              placeholder="e.g. Aarav Sharma"
+              value={formData.fullName}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.fullName ? errors.fullName : ''}
+              required
+            />
 
-            <div className="form-group">
-              <label htmlFor="email" className="form-label">
-                Email Address
-              </label>
-              <input
-                id="email"
-                type="email"
-                className={`form-input ${errors.email ? 'input-error' : ''}`}
-                placeholder="name@example.com"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (errors.email) setErrors({ ...errors, email: '' });
-                }}
-              />
-              {errors.email && (
-                <span className="field-error-message">{errors.email}</span>
-              )}
-            </div>
+            <InputField
+              label="Email Address"
+              id="email"
+              name="email"
+              type="email"
+              placeholder="name@example.com"
+              value={formData.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.email ? errors.email : ''}
+              required
+            />
 
-            <div className="form-group">
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                className={`form-input ${errors.password ? 'input-error' : ''}`}
-                placeholder="Create password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  if (errors.password) setErrors({ ...errors, password: '' });
-                }}
-              />
-              {errors.password && (
-                <span className="field-error-message">{errors.password}</span>
-              )}
-            </div>
+            <InputField
+              label="Password"
+              id="password"
+              name="password"
+              type="password"
+              placeholder="At least 8 chars with 1 number"
+              value={formData.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.password ? errors.password : ''}
+              required
+            />
 
-            <div className="form-group">
-              <label htmlFor="confirmPassword" className="form-label">
-                Confirm Password
-              </label>
-              <input
-                id="confirmPassword"
-                type="password"
-                className={`form-input ${errors.confirmPassword ? 'input-error' : ''}`}
-                placeholder="Confirm password"
-                value={confirmPassword}
-                onChange={(e) => {
-                  setConfirmPassword(e.target.value);
-                  if (errors.confirmPassword) setErrors({ ...errors, confirmPassword: '' });
-                }}
-              />
-              {errors.confirmPassword && (
-                <span className="field-error-message">{errors.confirmPassword}</span>
-              )}
-            </div>
+            <InputField
+              label="Confirm Password"
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              placeholder="Re-enter password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.confirmPassword ? errors.confirmPassword : ''}
+              required
+            />
 
-            <button type="submit" className="btn btn-primary btn-auth-submit">
+            {/* Submit button disabled until the form is completely valid */}
+            <button
+              type="submit"
+              disabled={!isValid}
+              className="btn btn-primary btn-auth-submit"
+            >
               Create Account
             </button>
           </form>
 
-          {/* Terms text */}
+          {/* Terms disclaimer */}
           <p className="auth-disclaimer">
-            By clicking "Create account", I agree to the CareerOS Terms of Service and have read the Privacy Policy.
+            By clicking "Create Account", I agree to the CareerOS Terms of Service and have read the Privacy Policy.
           </p>
 
-          {/* Footer navigation link */}
+          {/* Link to sign in */}
           <div className="auth-card-footer">
             <p className="auth-switch-text">
               Already have an account?{' '}
