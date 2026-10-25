@@ -1,0 +1,88 @@
+/*
+  FormField Stylesheet
+  Shared styling for InputField, SelectField, and TextAreaField components.
+  Strictly uses theme.css variables.
+*/
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-2);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-label {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+}
+
+.required-star {
+  color: var(--color-error);
+  margin-left: 4px;
+  font-weight: 700;
+}
+
+.form-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--space-2);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-body);
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  background-color: var(--color-surface);
+  border-color: var(--color-primary);
+}
+
+.form-input.input-error {
+  border-color: var(--color-error) !important;
+  background-color: var(--color-error-bg) !important;
+}
+
+.form-select {
+  cursor: pointer;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
+
+.form-select option {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+.form-textarea {
+  height: auto;
+  min-height: 90px;
+  padding: var(--space-2);
+  resize: vertical;
+  line-height: var(--line-height-body);
+}
+
+.field-error-message {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+  margin-top: 2px;
+}
+
+/* Ensure disabled buttons across all forms give clear visual feedback */
+button:disabled,
+.btn:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
