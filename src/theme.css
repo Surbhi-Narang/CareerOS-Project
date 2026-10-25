@@ -69,3 +69,38 @@
   --transition-fast: 150ms ease-in-out;
   --transition-normal: 250ms ease-in-out;
 }
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  /* Primary & Accent Colors */
+  --color-primary: #818CF8;
+  --color-primary-hover: #6366F1;
+  --color-primary-light: rgba(99, 102, 241, 0.15);
+  --color-accent: #A78BFA;
+  --color-accent-light: rgba(167, 139, 250, 0.15);
+  --color-accent-gold: #FBBF24;
+
+  /* Backgrounds & Surfaces */
+  --color-bg: #0F172A;
+  --color-bg-alt: #1E293B;
+  --color-surface: #1E293B;
+  --color-border: #334155;
+  --color-border-hover: #475569;
+
+  /* Typography */
+  --color-text-primary: #F8FAFC;
+  --color-text-muted: #94A3B8;
+
+  /* Status Badges */
+  --color-success: #34D399;
+  --color-success-bg: rgba(16, 185, 129, 0.15);
+  --color-error: #F87171;
+  --color-error-bg: rgba(239, 68, 68, 0.15);
+  --color-warning: #FBBF24;
+
+  /* Dark mode elevated shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
+}
+
