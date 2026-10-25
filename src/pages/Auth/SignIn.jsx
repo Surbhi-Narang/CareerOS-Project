@@ -1,48 +1,93 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { useToast } from '../../context/ToastContext';
+import InputField from '../../components/form/InputField';
 import './Auth.css';
 
 /**
- * SignIn Page Component (Teammate 1)
- * Login form with controlled inputs, field-level validation, and mock AuthContext integration.
+ * SignIn Page Component
+ * Login form with controlled InputField components,
+ * plain React state validation (on blur & on submit), disabled submit button when invalid,
+ * clear form on success, and ToastContext notifications.
  */
 export default function SignIn() {
   const { login } = useAuth();
+  const { showToast } = useToast();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
+  // Plain React state for form inputs
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
-  const validate = () => {
-    const newErrors = {};
+  // Track which fields have lost focus
+  const [touched, setTouched] = useState({});
+
+  // Helper validation function
+  const getFieldErrors = (values) => {
+    const errs = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!email.trim()) {
-      newErrors.email = 'Email is required.';
-    } else if (!emailRegex.test(email.trim())) {
-      newErrors.email = 'Please enter a valid email address.';
+    // Email validation
+    if (!values.email.trim()) {
+      errs.email = 'Email address is required.';
+    } else if (!emailRegex.test(values.email.trim())) {
+      errs.email = 'Please enter a valid email address.';
     }
 
-    if (!password) {
-      newErrors.password = 'Password is required.';
+    // Password validation
+    if (!values.password) {
+      errs.password = 'Password is required.';
     }
 
-    return newErrors;
+    return errs;
   };
 
+  // Compute errors and form validity
+  const errors = getFieldErrors(formData);
+  const isValid = Object.keys(errors).length === 0;
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Mark field as touched when user leaves the field
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+  };
+
+  // Form submission handler
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate();
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
+    // Mark all fields touched on submit
+    setTouched({
+      email: true,
+      password: true,
+    });
 
-    setErrors({});
-    login(email, password);
+    // Block submission if invalid
+    if (!isValid) return;
+
+    // Login user with mock AuthContext
+    login(formData.email.trim(), formData.password);
+
+    // Show success toast notification
+    showToast('Login successful! Welcome back.', 'success');
+
+    // Clear form state
+    setFormData({
+      email: '',
+      password: '',
+    });
+    setTouched({});
+
+    // Navigate to dashboard
     navigate('/dashboard');
   };
 
@@ -67,54 +112,45 @@ export default function SignIn() {
             <p className="auth-subtitle">Welcome back to your placement workspace</p>
           </div>
 
-          {/* Form */}
+          {/* Login Form */}
           <form onSubmit={handleSubmit} className="auth-form" noValidate>
-            <div className="form-group">
-              <label htmlFor="email" className="form-label">
-                Email Address
-              </label>
-              <input
-                id="email"
-                type="email"
-                className={`form-input ${errors.email ? 'input-error' : ''}`}
-                placeholder="name@example.com"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (errors.email) setErrors({ ...errors, email: '' });
-                }}
-              />
-              {errors.email && (
-                <span className="field-error-message">{errors.email}</span>
-              )}
-            </div>
+            <InputField
+              label="Email Address"
+              id="email"
+              name="email"
+              type="email"
+              placeholder="name@example.com"
+              value={formData.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.email ? errors.email : ''}
+              required
+            />
 
-            <div className="form-group">
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                className={`form-input ${errors.password ? 'input-error' : ''}`}
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  if (errors.password) setErrors({ ...errors, password: '' });
-                }}
-              />
-              {errors.password && (
-                <span className="field-error-message">{errors.password}</span>
-              )}
-            </div>
+            <InputField
+              label="Password"
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.password ? errors.password : ''}
+              required
+            />
 
-            <button type="submit" className="btn btn-primary btn-auth-submit">
+            {/* Submit button disabled until the form is completely valid */}
+            <button
+              type="submit"
+              disabled={!isValid}
+              className="btn btn-primary btn-auth-submit"
+            >
               Sign In
             </button>
           </form>
 
-          {/* Terms text */}
+          {/* Terms disclaimer */}
           <p className="auth-disclaimer">
             By continuing, you agree to our Terms of Service and Privacy Policy.
           </p>
