@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, LogOut, LayoutDashboard, Briefcase, Kanban, BookOpen, ChevronRight } from 'lucide-react';
+import { Menu, X, LogOut, LayoutDashboard, Briefcase, Kanban, BookOpen, ChevronRight, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
+import { useTheme } from '../../context/ThemeContext';
+import { useToast } from '../../context/ToastContext';
 import './Navbar.css';
 
 /**
  * Navbar Component (Shared)
- * Sticky header with conditional auth navigation, responsive drawer, and shared icon-text spacing.
+ * Sticky header with conditional auth navigation, responsive drawer, theme toggle, and toast logout.
  */
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
+  const { isDarkMode, toggleTheme } = useTheme();
+  const { showToast } = useToast();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,6 +32,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logout();
+    showToast('Signed out successfully. See you soon!', 'success');
     setMobileMenuOpen(false);
     navigate('/');
   };
@@ -94,8 +99,18 @@ export default function Navbar() {
           )}
         </nav>
 
-        {/* Desktop Auth Actions */}
+        {/* Desktop Auth Actions & Theme Toggle */}
         <div className="navbar-auth-actions">
+          {/* Theme Toggle Button (Sun/Moon) */}
+          <button
+            onClick={toggleTheme}
+            className="theme-toggle-btn"
+            aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
           {isAuthenticated ? (
             <div className="auth-user-dropdown">
               <Link to="/profile" className="user-badge-link" title="Click to view & edit profile">
@@ -121,15 +136,27 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile Hamburger Toggle */}
-        <button
-          className="navbar-mobile-toggle"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-expanded={mobileMenuOpen}
-          aria-label="Toggle Navigation Menu"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Header Actions (Theme Toggle + Hamburger) */}
+        <div className="navbar-mobile-actions">
+          <button
+            onClick={toggleTheme}
+            className="theme-toggle-btn"
+            aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          {/* Mobile Hamburger Toggle */}
+          <button
+            className="navbar-mobile-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
+            aria-label="Toggle Navigation Menu"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Drawer */}
